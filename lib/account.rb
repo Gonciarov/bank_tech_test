@@ -1,6 +1,9 @@
 require 'date'
-
+require_relative './statement.rb'
 class Account
+
+  attr_reader :history
+
   def initialize
     @balance = 0
     @history = []
@@ -25,29 +28,24 @@ class Account
     record(sum)
   end
 
-  def thanks
-    return "Thank you!"
-  end
-
   def display_balance
     return "Your current balance is #{@balance}"
   end
 
+  def thanks
+    return "Thank you!"
+  end
+
   def record(sum)
     if sum < 0
-      @history.push("#{Date.today.strftime("%e %b %Y")}|| #{sum} ||    || #{@balance}")
+      @history.push("#{Date.today.strftime('%d/%m/%Y')}|| #{sum} ||    || #{@balance}")
     else
-      @history.push("#{Date.today.strftime("%e %b %Y")}||    || #{sum} || #{@balance}")
+      @history.push("#{Date.today.strftime('%d/%m/%Y')}||    || #{sum} || #{@balance}")
     end
   end
 
-  def display_history_header
-    return "   date  || credit || debit || balance"
-  end
-
-  def display_balance_history
-    puts display_balance
-    puts display_history_header
-    @history.reverse.each { |record| puts record }
+  def display_statement
+    statement = Statement.new(history)
+    statement.display
   end
 end

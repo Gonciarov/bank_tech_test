@@ -1,6 +1,6 @@
 require_relative './account.rb'
 
-class Bank
+class Menu
 
   def initialize
     @account = Account.new
@@ -24,7 +24,7 @@ class Bank
       when "2"
         @account.withdraw
       when "3"
-        @account.display_balance_history
+        @account.display_statement
       when "x"
         return 'come again when you ready!'
         exit
@@ -40,6 +40,6 @@ class Bank
     end
 end
 
-a = Bank.new
+a = Menu.new
  puts(a.greet)
  a.select

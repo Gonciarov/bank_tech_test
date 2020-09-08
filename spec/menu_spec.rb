@@ -1,6 +1,6 @@
-require 'bank.rb'
+require 'menu.rb'
 
-describe Bank do
+describe Menu do
     describe "#greet" do
       it "shows a menu" do
         expect(subject.greet).to eq("Welcome, Customer!")
