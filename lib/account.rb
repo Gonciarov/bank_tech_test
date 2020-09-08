@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'date'
 require_relative './statement.rb'
 class Account
@@ -10,14 +12,14 @@ class Account
   end
 
   def deposit
-    puts "Amount of your deposit: "
+    puts 'Amount of your deposit: '
     sum = gets.chomp.to_i
     proceed(sum)
   end
 
   def withdraw
-    puts "Amount of your withdrawal: "
-    sum = gets.chomp.to_i * (-1)
+    puts 'Amount of your withdrawal: '
+    sum = gets.chomp.to_i * -1
     proceed(sum)
   end
 
@@ -29,23 +31,27 @@ class Account
   end
 
   def display_balance
-    return "Your current balance is #{@balance}"
+    "Your current balance is #{'%.02f' % @balance.fdiv(1)}"
   end
 
   def thanks
-    return "Thank you!"
+    'Thank you!'
   end
 
   def record(sum)
-    if sum < 0
-      @history.push("#{Date.today.strftime('%d/%m/%Y')}|| #{sum} ||    || #{@balance}")
+    if sum.negative?
+      @history.push("#{date}|| #{'%.02f' % sum.fdiv(1)} ||    || #{'%.02f' % @balance.fdiv(1)}")
     else
-      @history.push("#{Date.today.strftime('%d/%m/%Y')}||    || #{sum} || #{@balance}")
+      @history.push("#{date}||    || #{'%.02f' % sum.fdiv(1)} || #{'%.02f' % @balance.fdiv(1)}")
     end
   end
 
   def display_statement
     statement = Statement.new(history)
     statement.display
+  end
+
+  def date
+    Date.today.strftime('%d/%m/%Y')
   end
 end

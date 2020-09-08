@@ -18,4 +18,12 @@ For tests, run:
 rspec
 
 ```
-(Be prepared to press 'x' two times while running tests)
+(Be prepared to press 'x' a few times while running tests).
+
+APPROACH
+
+- My initial decision was to create a Menu class for interacting with Customer, and Account class to run all account operations.
+
+- On later stage, I decided to add Statement class to store all statement display functions in it.
+
+- The code is test-driven.
