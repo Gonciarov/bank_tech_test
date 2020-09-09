@@ -11,31 +11,17 @@ class Account
     @history = []
   end
 
-  def deposit
-    puts 'Amount of your deposit: '
-    sum = gets.chomp.to_i
+  def deposit(sum)
     proceed(sum)
   end
 
-  def withdraw
-    puts 'Amount of your withdrawal: '
-    sum = gets.chomp.to_i * -1
-    proceed(sum)
+  def withdraw(sum)
+    proceed(-sum)
   end
 
   def proceed(sum)
     @balance += sum
-    puts thanks
-    puts display_balance
     record(sum)
-  end
-
-  def display_balance
-    "Your current balance is #{'%.02f' % @balance.fdiv(1)}"
-  end
-
-  def thanks
-    'Thank you!'
   end
 
   def record(sum)
@@ -48,7 +34,7 @@ class Account
 
   def display_statement
     statement = Statement.new(history)
-    statement.display
+    puts statement.display
   end
 
   def date

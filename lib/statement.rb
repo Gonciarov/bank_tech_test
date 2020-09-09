@@ -6,11 +6,10 @@ class Statement
   end
 
   def statement_header
-    '   date  || credit || debit || balance'
+    return 'date  || credit || debit || balance'
   end
 
   def display
-    puts statement_header
-    @history.reverse.each { |record| puts record }
+    return "#{statement_header}\n #{@history.reverse.join("\n")}"
   end
 end
